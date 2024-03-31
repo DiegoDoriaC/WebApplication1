@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System;
 
 namespace WebApplication1.Controllers
 {
@@ -16,9 +19,17 @@ namespace WebApplication1.Controllers
             };
 
         [HttpGet]
-        public List<Persona> Persona()
-        {           
+        public List<Persona> Get()
+        {
             return p;
+        }
+
+        [HttpDelete("{nombre}")]
+        public ActionResult Delete(string nombre)
+        {
+            Persona? eliminar = p.Where(p => p.Nombre == nombre).FirstOrDefault();
+            p.Remove(eliminar);
+            return NoContent();
         }
 
 
