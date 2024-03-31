@@ -7,6 +7,7 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class PersonaController : ControllerBase
     {
+        [HttpGet]
         public List<Persona> Persona()
         {
             List<Persona> p = new List<Persona>
